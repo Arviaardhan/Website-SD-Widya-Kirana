@@ -1,7 +1,7 @@
 // controllers/HomeController.js
 
 import axios from "axios";
-import { apiUrl, apiUrlImage, getAllNews } from "../utils/Config";
+import { apiUrl, getImageGallery, getAllNews } from "../utils/Config";
 
 export const fetchBeritaTerbaru = async () => {
     try {
@@ -23,3 +23,21 @@ export const fetchBeritaTerbaru = async () => {
         return [];
     }
 };
+
+export const fetchGaleri = async () => {
+    try {
+        const response = await axios.get(`${apiUrl}${getImageGallery}`, {
+            headers: { "ngrok-skip-browser-warning": "true" },
+        });
+
+        console.log("Galeri Response:", response.data);
+
+        // Return data instead of calling setGaleriImages
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching galeri:", error);
+        return []; // Return empty array on error
+    }
+};
+
+
