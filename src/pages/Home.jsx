@@ -137,7 +137,7 @@ function Home() {
                                         mx-auto">
                                 <img
                                     loading='lazy'
-                                    src={`${apiUrlGetImageGallery}${item.image}`}
+                                    src={`${item.image}`}
                                     alt={`Gallery`}
                                     className="w-full h-full object-cover object-center"
                                 />
