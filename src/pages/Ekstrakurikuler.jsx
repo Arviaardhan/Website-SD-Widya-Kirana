@@ -50,7 +50,7 @@ function Ekstrakurikuler() {
                 {ekskulList.map((item, index) => (
                     <div key={index} className="flex flex-col md:flex-row items-start md:items-start gap-6 md:gap-10">
                         <img
-                            src={`${apiUrlImage}/storage/${item.image}`}
+                            src={`${item.image}`}
                             alt={item.title}
                             className="w-full md:w-[360px] lg:w-[450px] h-64 md:h-64 lg:h-72 object-cover rounded shadow-md"
                         />

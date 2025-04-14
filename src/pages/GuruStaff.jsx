@@ -52,7 +52,8 @@ function GuruStaff() {
                         <div key={index} className="text-center">
                             <div className="h-90 w-full overflow-hidden rounded-xl shadow-lg mb-4">
                                 <img
-                                    src={`${apiUrlImage}/storage/${teacher.image}`}
+                                    loading='lazy'
+                                    src={`${teacher.image}`}
                                     alt={teacher.name}
                                     className="h-full w-full object-cover"
                                 />
