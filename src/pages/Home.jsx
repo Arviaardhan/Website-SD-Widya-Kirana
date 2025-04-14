@@ -52,6 +52,7 @@ function Home() {
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
                     <div className="w-full md:w-1/2 h-[300px] md:h-[470px] overflow-hidden rounded-lg shadow-lg">
                         <img
+                            loading='lazy'
                             src={kepalaSekolah}
                             alt="Kepala Sekolah"
                             className="w-full h-full object-cover object-[center_30%] scale-110 md:scale-160 lg:scale-110 rounded-lg shadow-lg"
@@ -86,7 +87,8 @@ function Home() {
                     {beritaTerbaru.map((berita, index) => (
                         <div key={index} className="text-center">
                             <img
-                                src={`${apiUrlImage}${berita.image}`}
+                                loading="lazy"
+                                src={`${berita.image}`}
                                 alt={berita.title}
                                 className="rounded-md shadow-md mb-4 w-full h-72 object-cover object-center"
                             />
@@ -134,6 +136,7 @@ function Home() {
                                         lg:w-[920px] lg:h-[520px] 
                                         mx-auto">
                                 <img
+                                    loading='lazy'
                                     src={`${apiUrlGetImageGallery}${item.image}`}
                                     alt={`Gallery`}
                                     className="w-full h-full object-cover object-center"
