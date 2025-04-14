@@ -6,6 +6,8 @@ import "@fontsource/montserrat/700.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
 
@@ -84,18 +86,28 @@ function Home() {
                 </div>
 
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {beritaTerbaru.map((berita, index) => (
-                        <div key={index} className="text-center">
-                            <img
-                                loading="lazy"
-                                src={`${berita.image}`}
-                                alt={berita.title}
-                                className="rounded-md shadow-md mb-4 w-full h-72 object-cover object-center"
-                            />
-                            <h3 className="font-bold text-lg text-[#FFAF61] mb-2">{berita.title}</h3>
-                            <p className="text-gray-700 text-sm leading-6.5 md:leading-[1.55] line-clamp-3 font-normal tracking-wide mx-5">{berita.content}</p>
-                        </div>
-                    ))}
+                    {beritaTerbaru.length === 0 ? (
+                        Array(4).fill().map((_, i) => (
+                            <div key={i} className="text-center">
+                                <Skeleton height={288} className="mb-4 rounded-md" />
+                                <Skeleton height={24} width={`80%`} className="mx-auto mb-2" />
+                                <Skeleton count={3} height={14} width={`90%`} className="mx-auto mb-1" />
+                            </div>
+                        ))
+                    ) : (
+                        beritaTerbaru.map((berita, index) => (
+                            <div key={index} className="text-center">
+                                <img
+                                    loading="lazy"
+                                    src={`${berita.image}`}
+                                    alt={berita.title}
+                                    className="rounded-md shadow-md mb-4 w-full h-72 object-cover object-center"
+                                />
+                                <h3 className="font-bold text-lg text-[#FFAF61] mb-2">{berita.title}</h3>
+                                <p className="text-gray-700 text-sm leading-6.5 md:leading-[1.55] line-clamp-3 font-normal tracking-wide mx-5">{berita.content}</p>
+                            </div>
+                        ))
+                    )}
                 </div>
             </section>
 
@@ -127,23 +139,35 @@ function Home() {
                         }
                     ]}
                 >
-                    {galleryImages.map((item) => (
-                        <div className="px-4">
-                            <div className="overflow-hidden rounded-lg shadow-md 
-                                        w-full h-[200px] 
-                                        sm:w-full sm:h-[180px] 
-                                        md:w-full md:h-[180px] 
-                                        lg:w-[920px] lg:h-[520px] 
-                                        mx-auto">
-                                <img
-                                    loading='lazy'
-                                    src={`${item.image}`}
-                                    alt={`Gallery`}
-                                    className="w-full h-full object-cover object-center"
+                    {galleryImages.length === 0 ? (
+                        Array(2).fill().map((_, i) => (
+                            <div className="px-4" key={i}>
+                                <Skeleton
+                                    height={320}
+                                    className="rounded-lg"
+                                    containerClassName="w-full h-[200px] sm:h-[180px] md:h-[180px] lg:h-[520px] mx-auto"
                                 />
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        galleryImages.map((item, index) => (
+                            <div className="px-4" key={index}>
+                                <div className="overflow-hidden rounded-lg shadow-md 
+                            w-full h-[200px] 
+                            sm:w-full sm:h-[180px] 
+                            md:w-full md:h-[180px] 
+                            lg:w-[920px] lg:h-[520px] 
+                            mx-auto">
+                                    <img
+                                        loading='lazy'
+                                        src={`${item.image}`}
+                                        alt={`Gallery`}
+                                        className="w-full h-full object-cover object-center"
+                                    />
+                                </div>
+                            </div>
+                        ))
+                    )}
                 </Slider>
             </section>
 
@@ -163,7 +187,6 @@ function Home() {
                             width="100%"
                             height="380"
                             style={{ border: 0 }}
-                            allowFullScreen=""
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                             className="rounded-lg"
