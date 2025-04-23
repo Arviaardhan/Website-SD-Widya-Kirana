@@ -1,6 +1,6 @@
-export const apiUrl = "https://drake-firm-oarfish.ngrok-free.app/api";
-export const apiUrlImage = "https://drake-firm-oarfish.ngrok-free.app";
-export const apiUrlGetImageGallery = "https://drake-firm-oarfish.ngrok-free.app/storage/";
+export const apiUrl = "http://localhost:8000/api";
+export const apiUrlImage = "http://localhost:8000";
+export const apiUrlGetImageGallery = "http://localhost:8000/storage/";
 
 // Url News
 export const getAllNews = "/list_all_news";
