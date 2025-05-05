@@ -33,6 +33,7 @@ const Navbar = () => {
               <NavLink to="/guru" className={navLinkClass}>Guru & Staff</NavLink>
               <NavLink to="/ekstra" className={navLinkClass}>Ekstrakurikuler</NavLink>
               <NavLink to="/kurikulum" className={navLinkClass}>Kurikulum</NavLink>
+              <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             </div>
 
             {/* Mobile Menu Button */}
@@ -73,6 +74,9 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/kurikulum" className={navLinkClass} onClick={toggleSidebar}>
             Kurikulum
+          </NavLink>
+          <NavLink to="/blog" className={navLinkClass} onClick={toggleSidebar}>
+            Blog
           </NavLink>
         </div>
       </div>

@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row gap-12 md:gap-22 lg:gap-42 w-full max-w-7xl">
 
           {/* Logo */}
-          <div className="flex-shrink-0 flex justify-center md:justify-start">
+          <div className="flex-shrink-0 flex justify-start md:justify-start">
             <img
               src={LogoSD}
               alt="Logo SD Widya Kirana"

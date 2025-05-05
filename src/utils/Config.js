@@ -4,6 +4,7 @@ export const apiUrlGetImageGallery = "http://localhost:8000/storage/";
 
 // Url News
 export const getAllNews = "/list_all_news";
+export const getNewsByID = "/get_news/";
 
 // Url Image Gallery
 export const getImageGallery = "/gallery/list_gallery";

@@ -5,12 +5,19 @@ import axios from "axios";
 import Footer from "../components/Footer";
 import { apiUrl, apiUrlImage, getAllTeacherStaff } from '../utils/Config';
 import { FaSpinner } from "react-icons/fa";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function GuruStaff() {
     const [teachers, setTeachers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
         const fetchTeachers = async () => {
             try {
                 setIsLoading(true);
@@ -45,7 +52,7 @@ function GuruStaff() {
             <Navbar />
 
             {/* Hero Section */}
-            <div className="relative w-full h-[200px]">
+            <div className="relative w-full h-[200px]" data-aos="fade-in">
                 <img
                     src={imageHome}
                     alt="Background"
@@ -60,7 +67,7 @@ function GuruStaff() {
             </div>
 
             {/* Grid Section */}
-            <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8" data-aos="fade-up">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {isLoading
                         ? Array.from({ length: 6 }).map((_, i) => (

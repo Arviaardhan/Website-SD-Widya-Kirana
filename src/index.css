@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+.slick-slider {
+    touch-action: pan-y;
+}
+
+.slick-dots {
+    bottom: -25px; 
+    font-size: 20px;
+}
+  
+.slick-dots li button:before {
+    font-size: 20px;
+    color: #FFAF61; 
+}
+  
+.slick-dots li.slick-active button:before {
+    color: #6F5D00; 
+}
+  

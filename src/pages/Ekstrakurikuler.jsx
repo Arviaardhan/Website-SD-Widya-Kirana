@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import { imageHome } from '../assets/images';
 import Footer from "../components/Footer";
 import { apiUrl, apiUrlImage, getAllExtracurricular } from "../utils/Config";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Ekstrakurikuler() {
     const [ekskulList, setEkskulList] = useState([]);
@@ -11,6 +13,11 @@ function Ekstrakurikuler() {
 
     useEffect(() => {
         const fetchEkskul = async () => {
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+
             try {
                 setIsLoading(true);
                 const response = await axios.get(`${apiUrl}${getAllExtracurricular}`, {
@@ -48,7 +55,7 @@ function Ekstrakurikuler() {
             <Navbar />
 
             {/* Hero Section */}
-            <div className="relative w-full h-[200px]">
+            <div className="relative w-full h-[200px]" data-aos="fade-in">
                 <img
                     src={imageHome}
                     alt="Ekstrakurikuler"
@@ -63,7 +70,7 @@ function Ekstrakurikuler() {
             </div>
 
             {/* List Section */}
-            <div className="max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8 space-y-16">
+            <div className="max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8 space-y-16" data-aos="fade-up">
                 {isLoading
                     ? Array.from({ length: 3 }).map((_, index) => (
                         <SkeletonItem key={index} />
