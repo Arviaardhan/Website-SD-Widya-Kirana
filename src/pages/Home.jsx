@@ -10,6 +10,8 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Home() {
     const [beritaTerbaru, setBeritaTerbaru] = useState([]);
@@ -17,6 +19,11 @@ function Home() {
 
 
     useEffect(() => {
+        AOS.init({
+            duration: 1000, 
+            once: true     
+        });
+
         const fetchData = async () => {
             const berita = await fetchBeritaTerbaru();
             setBeritaTerbaru(berita);
@@ -32,7 +39,7 @@ function Home() {
         <>
             <Navbar />
             {/* Hero Section */}
-            <div className="relative w-full h-[400px]">
+            <div className="relative w-full h-[400px]" data-aos="fade-in">
                 <img
                     src={imageHome}
                     alt="Background"
@@ -50,7 +57,7 @@ function Home() {
             </div>
 
             {/* Section Sambutan */}
-            <section className="py-12 px-4 md:px-10">
+            <section className="py-12 px-4 md:px-10" data-aos="fade-up">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
                     <div className="w-full md:w-1/2 h-[300px] md:h-[470px] overflow-hidden rounded-lg shadow-lg">
                         <img
@@ -77,7 +84,7 @@ function Home() {
             </section>
 
             {/* Section Berita */}
-            <section className="py-14 px-4 md:px-20 bg-white justify-center items-center">
+            <section className="py-14 px-4 md:px-20 bg-white justify-center items-center" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto text-center mb-12">
                     <h2 className="text-3xl md:text-5xl lg:text-[1.rem] font-bold text-[#26166e] tracking-[1px]">BERITA TERBARU</h2>
                     <p className="mt-2 text-sm md:text-xl lg:text-[1.rem] text-gray-600 font-normal tracking-wide">
@@ -112,7 +119,7 @@ function Home() {
             </section>
 
             {/* Section Gallery */}
-            <section className="py-10 px-10 md:px-40">
+            <section className="py-10 px-10 md:px-40" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto text-center mb-10">
                     <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-[#26166e]">Galeri SD Widya Kirana</h2>
                     <p className="mt-2 md:mt-4 lg:mt-5 text-sm md:text-xl lg:text-[1.rem] text-gray-600 font-normal tracking-wide">
@@ -172,7 +179,7 @@ function Home() {
             </section>
 
             {/* Section Lokasi */}
-            <section className="py-12 px-4 md:px-20">
+            <section className="py-12 px-4 md:px-20" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto text-center mb-8">
                     <h2 className="text-3xl md:text-5xl font-bold text-[#26166e] mb-4">Lokasi SD Widya Kirana</h2>
                     <p className="text-gray-700 text-lg mb-6">

@@ -7,6 +7,8 @@ import VisiMisi from './pages/VisiMisi'
 import GuruStaff from './pages/GuruStaff'
 import Ekstrakurikuler from './pages/Ekstrakurikuler'
 import Kurikulum from './pages/Kurikulum'
+import Blog from './pages/Blog'
+import NewsDetail from './pages/NewsDetail'
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/guru" element={<GuruStaff />} />
         <Route path="/ekstra" element={<Ekstrakurikuler />} />
         <Route path="/kurikulum" element={<Kurikulum />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/news/:id" element={<NewsDetail />} />
       </Routes>
     </Router>
   )

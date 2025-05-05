@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { imageHome } from '../assets/images';
 import Footer from "../components/Footer";
 import { partnerSchools, partnerUniversity } from "../models/kurikulumModel";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Kurikulum() {
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true });
+    }, []);
+
     return (
         <div>
             <Navbar />
 
             {/* Hero Section */}
-            <div className="relative w-full h-[200px]">
+            <div className="relative w-full h-[200px]" data-aos="fade-in">
                 <img
                     src={imageHome}
                     alt="Background"
@@ -25,7 +31,7 @@ function Kurikulum() {
             </div>
 
             {/* Deskripsi Kurikulum */}
-            <section className="max-w-7xl mx-auto px-6 md:px-20 py-12 bg-white">
+            <section className="max-w-7xl mx-auto px-6 md:px-20 py-12 bg-white" data-aos="fade-up">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#26166e] mb-4">Kurikulum Oakbridge Nasional</h2>
                 <p className="text-xl text-gray-700 font-normal tracking-wide">
                     Oakbridge adalah sistem pembelajaran yang memberikan solusi dengan menggunakan kurikulum Nasional Plus yang
@@ -35,7 +41,7 @@ function Kurikulum() {
             </section>
 
             {/* Partner School */}
-            <section className="px-6 md:px-20 lg:px-40 py-12">
+            <section className="px-6 md:px-20 lg:px-40 py-12" data-aos="fade-up">
                 <h2 className="text-center text-3xl md:text-4xl font-bold text-[#26166e] mb-20">
                     Oakbridge Nasional Partner School
                 </h2>
@@ -68,7 +74,7 @@ function Kurikulum() {
             </section>
 
             {/* Partner School */}
-            <section className="px-6 md:px-20 lg:px-40 py-12">
+            <section className="px-6 md:px-20 lg:px-40 py-12" data-aos="fade-up">
                 <h2 className="text-center text-3xl md:text-4xl font-bold text-[#26166e] mb-20">
                     Oakbridge Nasional Partner University
                 </h2>
