@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+h1 {
+    font-weight: 900;
+}
+
 .slick-slider {
     touch-action: pan-y;
 }

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { AxiosInstance } from "../common/AxiosInstance";
 import Navbar from "../components/Navbar";
 import { imageHome } from '../assets/images';
 import Footer from "../components/Footer";
-import { apiUrl, apiUrlImage, getAllExtracurricular } from "../utils/Config";
+import { getAllExtracurricular } from "../utils/Config";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from "react-helmet";
 
 function Ekstrakurikuler() {
     const [ekskulList, setEkskulList] = useState([]);
@@ -20,12 +21,7 @@ function Ekstrakurikuler() {
 
             try {
                 setIsLoading(true);
-                const response = await axios.get(`${apiUrl}${getAllExtracurricular}`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "ngrok-skip-browser-warning": "true",
-                    },
-                });
+                const response = await AxiosInstance.get(`${getAllExtracurricular}`);
                 setEkskulList(response.data);
             } catch (error) {
                 console.error("Gagal mengambil data ekstrakurikuler:", error);
@@ -52,6 +48,14 @@ function Ekstrakurikuler() {
 
     return (
         <>
+
+            <Helmet>
+                <meta name="google-site-verification" content="6NySi0eoc_-8ZIzOhmXTUA2e3VTapByqeyCmlLp1V84" />
+                <title>Ekstrakurikuler | SD Widya Kirana</title>
+                <meta name="description" content="Temukan berbagai kegiatan ekstrakurikuler yang mendukung pengembangan diri siswa di SD Widya Kirana. Program kami dirancang untuk mengasah bakat dan minat siswa di luar kegiatan akademik." />
+                <meta name="keywords" content="Ekstrakurikuler SD Widya Kirana, Kegiatan Ekstrakurikuler, Sekolah Dasar Kudus, Pengembangan Bakat, Aktivitas Siswa, SD Widya Kirana Kudus, Program Ekstrakurikuler" />
+            </Helmet>
+
             <Navbar />
 
             {/* Hero Section */}
@@ -76,15 +80,21 @@ function Ekstrakurikuler() {
                         <SkeletonItem key={index} />
                     ))
                     : ekskulList.map((item, index) => (
-                        <div key={index} className="flex flex-col md:flex-row items-start md:items-start gap-6 md:gap-10">
+                        <div
+                            key={index}
+                            className="flex flex-col md:flex-row items-start gap-6 md:gap-10 bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-100"
+                            data-aos="fade-up"
+                        >
                             <img
-                                src={`${item.image}`}
+                                src={item.image}
                                 alt={item.title}
-                                className="w-full md:w-[360px] lg:w-[450px] h-64 md:h-64 lg:h-72 object-cover rounded shadow-md"
+                                className="w-full md:w-[360px] lg:w-[450px] h-64 md:h-64 lg:h-72 object-cover rounded-xl shadow-sm"
                             />
-                            <div>
-                                <h3 className="text-4xl font-bold text-indigo-900">{item.title}</h3>
-                                <p className="text-gray-700 mt-2 md:mt-6 text-justify font-normal tracking-wide">{item.description}</p>
+                            <div className="flex-1">
+                                <h3 className="text-3xl font-bold text-indigo-900 mb-4">{item.title}</h3>
+                                <p className="text-gray-700 text-justify tracking-wide leading-relaxed">
+                                    {item.description}
+                                </p>
                             </div>
                         </div>
                     ))}

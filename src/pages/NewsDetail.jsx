@@ -1,10 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { AxiosInstance } from "../common/AxiosInstance";
 import Navbar from "../components/Navbar";
 import { imageHome } from '../assets/images';
 import Footer from "../components/Footer";
-import { apiUrl, getNewsByID, getAllNews } from "../utils/Config";
+import { getNewsByID, getAllNews } from "../utils/Config";
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -25,7 +25,7 @@ function NewsDetail() {
 
     const fetchDetail = async () => {
       try {
-        const res = await axios.get(`${apiUrl}${getNewsByID}${id}`);
+        const res = await AxiosInstance.get(`${getNewsByID}${id}`);
         setNews(res.data);
       } catch (err) {
         console.error("Error fetching detail:", err);
@@ -36,14 +36,9 @@ function NewsDetail() {
 
     const fetchOtherNews = async () => {
       try {
-        const res = await axios.get(`${apiUrl}${getAllNews}`, {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true",
-          },
-        });
-        const filtered = res.data.filter(item => item.id !== id);
-        setNewsList(filtered.slice(0, 4)); // ambil 3 berita
+        const res = await AxiosInstance.get(`${getAllNews}`);
+        const filtered = res.data.filter(item => item.id.toString() !== id);
+        setNewsList(filtered.slice(0, 4)); // ambil 4 berita
       } catch (err) {
         console.error("Error fetching other news:", err);
       }
@@ -88,24 +83,39 @@ function NewsDetail() {
             {news.title}
           </h1>
 
-          <div className="flex flex-wrap text-sm text-gray-600 mb-4 gap-10 justify-start">
-            <div className='flex items-center gap-7'>
-              <span className="text-gray-400 text-lg">Diposting oleh :</span>
-              <span className="text-gray-800 font-medium text-lg">
-                {news.admin?.username || "Admin"}
-              </span>
+          <div className="flex gap-15 text-gray-600 mb-6">
+            <div className="flex items-center gap-5">
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/1077/1077012.png"
+                alt="User Icon"
+                className="w-7 h-7 mt-1"
+              />
+              <div>
+                <p className="text-gray-400 text-sm">Diposting oleh</p>
+                <p className="text-gray-800 font-semibold text-base">
+                  {news.admin?.username || "Admin"}
+                </p>
+              </div>
             </div>
-            <div className="flex items-center gap-7">
-              <span className="text-gray-400 text-lg">Tanggal :</span>
-              <span className="text-gray-800 font-medium text-lg">
-                {new Date(news.created_at).toLocaleDateString("id-ID", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
+            <div className="flex items-center gap-5">
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/10741/10741253.png"
+                alt="User Icon"
+                className="w-7 h-7 mt-1"
+              />
+              <div>
+                <p className="text-gray-400 text-sm">Tanggal</p>
+                <p className="text-gray-800 font-semibold text-base">
+                  {new Date(news.created_at).toLocaleDateString("id-ID", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
             </div>
           </div>
+
 
           <img
             src={

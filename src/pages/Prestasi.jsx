@@ -3,13 +3,13 @@ import Navbar from '../components/Navbar';
 import { imageHome } from '../assets/images';
 import { AxiosInstance } from "../common/AxiosInstance";
 import Footer from "../components/Footer";
-import { getAllTeacherStaff } from '../utils/Config';
+import { getAllAchievement } from '../utils/Config';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Helmet } from "react-helmet";
 
-function GuruStaff() {
-    const [teachers, setTeachers] = useState([]);
+function Prestasi() {
+    const [achievements, setAchievements] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -18,11 +18,11 @@ function GuruStaff() {
             once: true
         });
 
-        const fetchTeachers = async () => {
+        const fetchPrestasi = async () => {
             try {
                 setIsLoading(true);
-                const response = await AxiosInstance.get(`${getAllTeacherStaff}`);
-                setTeachers(response.data);
+                const response = await AxiosInstance.get(`${getAllAchievement}`);
+                setAchievements(response.data);
             } catch (error) {
                 console.error("Error fetching teachers:", error);
             } finally {
@@ -30,7 +30,7 @@ function GuruStaff() {
             }
         };
 
-        fetchTeachers();
+        fetchPrestasi();
     }, []);
 
     const SkeletonCard = () => (
@@ -46,9 +46,9 @@ function GuruStaff() {
 
             <Helmet>
                 <meta name="google-site-verification" content="6NySi0eoc_-8ZIzOhmXTUA2e3VTapByqeyCmlLp1V84" />
-                <title>Guru & Staff | SD Widya Kirana</title>
-                <meta name="description" content="Kenali para guru dan staf profesional di SD Widya Kirana yang berdedikasi dalam memberikan pendidikan berkualitas. Temukan informasi tentang pengalaman dan keahlian mereka di sini." />
-                <meta name="keywords" content="Guru SD Widya Kirana, Staf SD Widya Kirana, Pendidikan, Sekolah Dasar Kudus, Tenaga Pendidik, Pengajaran Berkualitas, SD Widya Kirana Kudus" />
+                <title>Prestasi | SD Widya Kirana</title>
+                <meta name="description" content="Lihat berbagai prestasi gemilang yang telah diraih oleh siswa-siswi SD Widya Kirana dalam berbagai bidang, baik akademik maupun non-akademik, dan Prestasi Coding. Kami bangga dengan pencapaian mereka!" />
+                <meta name="keywords" content="Prestasi SD Widya Kirana, Siswa Berprestasi, Sekolah Dasar Kudus, Prestasi Akademik, Prestasi Non-Akademik, Prestasi Coding, Keberhasilan Siswa, SD Widya Kirana Kudus" />
             </Helmet>
 
             <Navbar />
@@ -63,7 +63,7 @@ function GuruStaff() {
                 <div className="absolute inset-0 bg-black/40" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
                     <h1 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">
-                        HALAMAN GURU & STAFF
+                        HALAMAN PRESTASI
                     </h1>
                 </div>
             </div>
@@ -79,31 +79,31 @@ function GuruStaff() {
                         ))}
                     </div>
                 ) : (() => {
-                    const fullRows = Math.floor(teachers.length / 6) * 6; // 3 (desktop), 2 (iPad), 1 (mobile)
+                    const fullRows = Math.floor(achievements.length / 6) * 6; // 3 (desktop), 2 (iPad), 1 (mobile)
                     const isDesktop = window.innerWidth >= 1024;
                     const itemsPerRow = isDesktop ? 3 : window.innerWidth >= 768 ? 2 : 1;
-                    const fullItems = Math.floor(teachers.length / itemsPerRow) * itemsPerRow;
-                    const mainItems = teachers.slice(0, fullItems);
-                    const remainingItems = teachers.slice(fullItems);
+                    const fullItems = Math.floor(achievements.length / itemsPerRow) * itemsPerRow;
+                    const mainItems = achievements.slice(0, fullItems);
+                    const remainingItems = achievements.slice(fullItems);
 
                     return (
                         <>
                             {/* Full Rows */}
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                                {mainItems.map((teacher, index) => (
+                                {mainItems.map((achievement, index) => (
                                     <div key={index} className="text-center">
                                         <div className="h-90 w-full overflow-hidden rounded-xl shadow-lg mb-4">
                                             <img
                                                 loading="lazy"
-                                                src={teacher.image}
-                                                alt={teacher.name}
+                                                src={achievement.image}
+                                                alt={achievement.name}
                                                 className="h-full w-full object-cover"
                                             />
                                         </div>
                                         <h3 className="text-xl font-bold text-indigo-900">
-                                            {teacher.name}
+                                            {achievement.name}
                                         </h3>
-                                        <p className="text-gray-600 mt-5">{teacher.description}</p>
+                                        <p className="text-gray-600 mt-5">{achievement.description}</p>
                                     </div>
                                 ))}
                             </div>
@@ -139,4 +139,4 @@ function GuruStaff() {
     );
 }
 
-export default GuruStaff;
+export default Prestasi;
