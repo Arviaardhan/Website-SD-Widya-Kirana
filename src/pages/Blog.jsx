@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import axios from "axios";
+import { AxiosInstance } from "../common/AxiosInstance";
 import Navbar from "../components/Navbar";
 import { imageHome } from '../assets/images';
 import Footer from "../components/Footer";
-import { apiUrl, getAllNews } from "../utils/Config";
+import { getAllNews } from "../utils/Config";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from "react-helmet";
 
 function Blog() {
     const [newsList, setNewsList] = useState([]);
@@ -34,12 +35,7 @@ function Blog() {
         const fetchNews = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`${apiUrl}${getAllNews}`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "ngrok-skip-browser-warning": "true",
-                    },
-                });
+                const response = await AxiosInstance.get(`${getAllNews}`);
                 setNewsList(response.data);
             } catch (error) {
                 console.error("Error fetching news:", error);
@@ -84,6 +80,14 @@ function Blog() {
 
     return (
         <>
+
+            <Helmet>
+                <meta name="google-site-verification" content="6NySi0eoc_-8ZIzOhmXTUA2e3VTapByqeyCmlLp1V84" />
+                <title>Blog | SD Widya Kirana</title>
+                <meta name="description" content="Baca berbagai artikel dan informasi menarik seputar kegiatan, prestasi, coding, serta perkembangan terbaru di SD Widya Kirana. Dapatkan update seputar dunia pendidikan dan kegiatan sekolah kami." />
+                <meta name="keywords" content="Blog SD Widya Kirana, Artikel Pendidikan, Berita Sekolah Dasar Kudus, Kegiatan Sekolah, Informasi Pendidikan, SD Widya Kirana Kudus" />
+            </Helmet>
+
             <Navbar />
 
             {/* Hero Section */}
@@ -126,7 +130,11 @@ function Blog() {
                             ))}
                         </select>
 
-                        <select className="px-4 pr-8 py-2 border rounded-full shadow-sm w-full">
+                        <select
+                            value={selectedYear}
+                            onChange={(e) => setSelectedYear(e.target.value)}
+                            className="px-4 pr-8 py-2 border rounded-full shadow-sm w-full"
+                        >
                             <option value="">Pilih Tahun</option>
                             {yearList.map((tahun) => (
                                 <option key={tahun} value={tahun}>{tahun}</option>
@@ -215,8 +223,8 @@ function Blog() {
                             key={index}
                             onClick={() => goToPage(index + 1)}
                             className={`px-4 py-2 rounded-full border ${currentPage === index + 1
-                                    ? 'bg-[#FFAF61] text-white'
-                                    : 'bg-white hover:bg-gray-100'
+                                ? 'bg-[#FFAF61] text-white'
+                                : 'bg-white hover:bg-gray-100'
                                 }`}
                         >
                             {index + 1}

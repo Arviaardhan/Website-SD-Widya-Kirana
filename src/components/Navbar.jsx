@@ -33,6 +33,7 @@ const Navbar = () => {
               <NavLink to="/guru" className={navLinkClass}>Guru & Staff</NavLink>
               <NavLink to="/ekstra" className={navLinkClass}>Ekstrakurikuler</NavLink>
               <NavLink to="/kurikulum" className={navLinkClass}>Kurikulum</NavLink>
+              <NavLink to="/prestasi" className={navLinkClass}>Prestasi</NavLink>
               <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
             </div>
 
@@ -52,12 +53,6 @@ const Navbar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 z-50`}
       >
-        <div className="flex items-center justify-between px-4 py-4 border-b">
-          <span className="text-lg font-bold text-[#26166e]">Menu</span>
-          <button onClick={toggleSidebar} className="text-gray-600">
-            <FaTimes size={22} />
-          </button>
-        </div>
 
         <div className="flex flex-col px-4 py-4 space-y-4">
           <NavLink to="/" className={navLinkClass} onClick={toggleSidebar}>
@@ -74,6 +69,9 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/kurikulum" className={navLinkClass} onClick={toggleSidebar}>
             Kurikulum
+          </NavLink>
+          <NavLink to="/prestasi" className={navLinkClass} onClick={toggleSidebar}>
+            Prestasi
           </NavLink>
           <NavLink to="/blog" className={navLinkClass} onClick={toggleSidebar}>
             Blog

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchBeritaTerbaru, fetchGaleri } from '../controllers/HomeController';
 import { imageHome, kepalaSekolah } from '../assets/images';
-import { apiUrlImage, apiUrlGetImageGallery } from '../utils/Config';
 import "@fontsource/montserrat/700.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -12,6 +12,7 @@ import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from 'react-helmet';
 
 function Home() {
     const [beritaTerbaru, setBeritaTerbaru] = useState([]);
@@ -20,8 +21,8 @@ function Home() {
 
     useEffect(() => {
         AOS.init({
-            duration: 1000, 
-            once: true     
+            duration: 1000,
+            once: true
         });
 
         const fetchData = async () => {
@@ -37,6 +38,14 @@ function Home() {
 
     return (
         <>
+
+            <Helmet>
+                <meta name="google-site-verification" content="6NySi0eoc_-8ZIzOhmXTUA2e3VTapByqeyCmlLp1V84" />
+                <title>Beranda | SD Widya Kirana</title>
+                <meta name="description" content="Selamat datang di website resmi SD Widya Kirana. Temukan berita terbaru, galeri kegiatan, dan informasi penting lainnya di sini." />
+                <meta name="keywords" content="SD Widya Kirana, Sekolah Dasar Kudus, Pendidikan, Sekolah Coding" />
+            </Helmet>
+
             <Navbar />
             {/* Hero Section */}
             <div className="relative w-full h-[400px]" data-aos="fade-in">
@@ -47,10 +56,13 @@ function Home() {
                 />
                 <div className="absolute inset-0 bg-black/40" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-                    <h1 className="text-4xl md:text-6xl font-bold text-[#ffff00] mb-12 md:mb-15 drop-shadow-lg">
+                    <h1 className="text-4xl md:text-6xl text-[#ffff00] mb-2 md:mb-5 drop-shadow-lg">
                         BE BRIGHT GENERATION
                     </h1>
-                    <p className="text-lg md:text-xl mx-5 italic drop-shadow font-normal tracking-wide">
+                    <p className="text-2xl md:text-2xl mx-5 italic drop-shadow mb-12 md:mb-15 font-bold tracking-wide">
+                        (Brilliant, Religious, Independent, Great, Hope, Talented)
+                    </p>
+                    <p className="text-md md:text-xl mx-5 italic drop-shadow font-normal tracking-wide">
                         Jl. Pemuda No.60, Magersari, Panjunan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59317
                     </p>
                 </div>
@@ -103,7 +115,7 @@ function Home() {
                         ))
                     ) : (
                         beritaTerbaru.map((berita, index) => (
-                            <div key={index} className="text-center">
+                            <Link to={`/news/${berita.id}`} key={index} className="text-center">
                                 <img
                                     loading="lazy"
                                     src={`${berita.image}`}
@@ -112,7 +124,7 @@ function Home() {
                                 />
                                 <h3 className="font-bold text-lg text-[#FFAF61] mb-2">{berita.title}</h3>
                                 <p className="text-gray-700 text-sm leading-6.5 md:leading-[1.55] line-clamp-3 font-normal tracking-wide mx-5">{berita.content}</p>
-                            </div>
+                            </Link>
                         ))
                     )}
                 </div>

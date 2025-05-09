@@ -4,16 +4,25 @@ import { imageHome } from '../assets/images';
 import Footer from "../components/Footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from 'react-helmet';
 
 const VisiMisi = () => {
     useEffect(() => {
         AOS.init({ duration: 1000, once: true });
     }, []);
-    
+
     return (
         <>
+
+            <Helmet>
+                <meta name="google-site-verification" content="6NySi0eoc_-8ZIzOhmXTUA2e3VTapByqeyCmlLp1V84" />
+                <title>Visi dan Misi | SD Widya Kirana</title>
+                <meta name="description" content="Halaman Visi dan Misi SD Widya Kirana, sekolah dengan pendidikan berkualitas dan berkarakter." />
+                <meta name="keywords" content="Visi Misi, SD Widya Kirana, Pendidikan Berkualitas, Karakter, Sekolah Dasar Kudus" />
+            </Helmet>
+
             <Navbar />
-            
+
             {/* Hero Section */}
             <div className="relative w-full h-[200px]" data-aos="fade-in">
                 <img
@@ -31,12 +40,12 @@ const VisiMisi = () => {
 
             {/* Content Section */}
             <div className="max-w-2xl md:max-w-3xl lg:max-w-7xl mx-auto px-8 py-10 space-y-10 justify-start items-start">
-                
+
                 {/* Pengenalan */}
                 <div data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#26166e] mb-5">Pengenalan SD Widya Kirana</h2>
                     <p className="max-w-7xl mx-auto text-gray-700 leading-relaxed font-normal tracking-wide text-xl">
-                        SD Widya Kirana adalah sebuah sekolah swasta yang berlokasi di Jl. Pemuda No 60, Panjunan, Kecamatan Kota Kudus, Kabupaten Kudus, Jawa Tengah, telah berdiri sejak tahun 2020. Berfokus pada pendidikan dasar, SD WIDYA KIRANA berkomitmen untuk memberikan pendidikan berkualitas bagi para siswanya. Sekolah ini memiliki visi dan misi yang jelas untuk melahirkan generasi muda yang berakhlak mulia dan cerdas. Dengan mengusung semangat "Unggul dalam Prestasi, Berakhlak Mulia", SD Widya Kirana mendorong siswa-siswinya untuk mencapai prestasi optimal, baik akademik maupun non-akademik. 
+                        SD Widya Kirana adalah sebuah sekolah swasta yang berlokasi di Jl. Pemuda No 60, Panjunan, Kecamatan Kota Kudus, Kabupaten Kudus, Jawa Tengah, telah berdiri sejak tahun 2020. Berfokus pada pendidikan dasar, SD WIDYA KIRANA berkomitmen untuk memberikan pendidikan berkualitas bagi para siswanya. Sekolah ini memiliki visi dan misi yang jelas untuk melahirkan generasi muda yang berakhlak mulia dan cerdas. Dengan mengusung semangat "Unggul dalam Prestasi, Berakhlak Mulia", SD Widya Kirana mendorong siswa-siswinya untuk mencapai prestasi optimal, baik akademik maupun non-akademik.
                     </p>
                 </div>
 

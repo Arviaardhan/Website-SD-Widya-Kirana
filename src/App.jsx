@@ -7,6 +7,7 @@ import VisiMisi from './pages/VisiMisi'
 import GuruStaff from './pages/GuruStaff'
 import Ekstrakurikuler from './pages/Ekstrakurikuler'
 import Kurikulum from './pages/Kurikulum'
+import Prestasi from './pages/Prestasi'
 import Blog from './pages/Blog'
 import NewsDetail from './pages/NewsDetail'
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/guru" element={<GuruStaff />} />
         <Route path="/ekstra" element={<Ekstrakurikuler />} />
         <Route path="/kurikulum" element={<Kurikulum />} />
+        <Route path="/prestasi" element={<Prestasi />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/news/:id" element={<NewsDetail />} />
       </Routes>

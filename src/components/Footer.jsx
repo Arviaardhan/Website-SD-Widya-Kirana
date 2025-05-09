@@ -60,13 +60,13 @@ const Footer = () => {
               <h2 className="text-2xl font-bold mb-4">Social Media</h2>
               <ul className="space-y-3">
                 <li className="flex items-center gap-2">
-                  <FaInstagram /> <a href="#" className="hover:underline">Instagram</a>
+                  <FaInstagram /> <a href="https://www.instagram.com/sdwidyakiranakudus/" target="_blank" rel="noopener noreferrer" className="hover:underline">Instagram</a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <FaFacebook /> <a href="#" className="hover:underline">Facebook</a>
+                  <FaFacebook /> <a href="https://www.facebook.com/ONPKudus" target="_blank" rel="noopener noreferrer" className="hover:underline">Facebook</a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <FaYoutube /> <a href="#" className="hover:underline">Youtube</a>
+                  <FaYoutube /> <a href="https://www.youtube.com/@sdwidyakiranakudus2486/" target="_blank" rel="noopener noreferrer" className="hover:underline">Youtube</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <FaTiktok /> <a href="#" className="hover:underline">Tiktok</a>

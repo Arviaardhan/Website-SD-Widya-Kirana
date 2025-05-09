@@ -1,16 +1,11 @@
 // controllers/HomeController.js
 
-import axios from "axios";
-import { apiUrl, getImageGallery, getAllNews } from "../utils/Config";
+import { getImageGallery, getAllNews } from "../utils/Config";
+import { AxiosInstance } from "../common/AxiosInstance";
 
 export const fetchBeritaTerbaru = async () => {
     try {
-        const response = await axios.get(`${apiUrl}${getAllNews}`, {
-            headers: {
-                "Accept": "application/json",
-                "ngrok-skip-browser-warning": "true", // ← tambahkan ini
-            },
-        });
+        const response = await AxiosInstance.get(getAllNews);
 
         // Urutkan berdasarkan created_at
         const sortedData = response.data.sort(
@@ -26,13 +21,7 @@ export const fetchBeritaTerbaru = async () => {
 
 export const fetchGaleri = async () => {
     try {
-        const response = await axios.get(`${apiUrl}${getImageGallery}`, {
-            headers: { "ngrok-skip-browser-warning": "true" },
-        });
-
-        console.log("Galeri Response:", response.data);
-
-        // Return data instead of calling setGaleriImages
+        const response = await AxiosInstance.get(getImageGallery);
         return response.data;
     } catch (error) {
         console.error("Error fetching galeri:", error);
