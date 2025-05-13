@@ -61,7 +61,7 @@ function Home() {
 
                 <div className="relative z-20 flex flex-col items-center justify-center text-center h-full px-6">
                     <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg tracking-wider">
-                        <span className="text-yellow-400">BE BRIGHT GENERATION</span>
+                        <span className="text-yellow-300">BE BRIGHT GENERATION</span>
                     </h1>
 
                     <p className="mt-4 text-xl md:text-2xl italic text-gray-200 font-medium tracking-wide">
@@ -124,11 +124,11 @@ function Home() {
 
                 <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {beritaTerbaru.length === 0 ? (
-                        Array(4).fill().map((_, i) => (
+                        Array(6).fill().map((_, i) => (
                             <div key={i} className="text-center">
                                 <Skeleton height={288} className="mb-4 rounded-md" />
                                 <Skeleton height={24} width={`80%`} className="mx-auto mb-2" />
-                                <Skeleton count={3} height={14} width={`90%`} className="mx-auto mb-1" />
+                                <Skeleton count={6} height={14} width={`90%`} className="mx-auto mb-1" />
                             </div>
                         ))
                     ) : (
