@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.sdwidyakirana.sch.id/sitemap.txt
+Sitemap: https://sdwidyakirana.sch.id/sitemap.txt
