@@ -12,7 +12,7 @@ export const fetchBeritaTerbaru = async () => {
             (a, b) => new Date(b.created_at) - new Date(a.created_at)
         );
 
-        return sortedData.slice(0, 4); // ambil 4 berita terbaru
+        return sortedData.slice(0, 6); // ambil 4 berita terbaru
     } catch (error) {
         console.error("Gagal mengambil data berita terbaru:", error);
         return [];

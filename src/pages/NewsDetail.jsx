@@ -127,7 +127,12 @@ function NewsDetail() {
             className="w-full max-h-full object-cover rounded-md mb-6"
           />
 
-          <div className="text-md text-gray-800 leading-relaxed whitespace-pre-line">{news.content}</div>
+          <div
+            className="text-md text-gray-800 leading-relaxed whitespace-pre-line [&_a]:text-blue-600 [&_a]:underline"
+            dangerouslySetInnerHTML={{
+              __html: news.content.replace(/<a /g, '<a target="_blank" ')
+            }}
+          ></div>
         </div>
 
         {/* Kolom Kanan: Berita Lainnya */}
@@ -142,9 +147,11 @@ function NewsDetail() {
               />
               <div>
                 <h3 className="font-medium text-lg text-[#FFAF61] hover:text-[#DDA853]">{item.title}</h3>
-                <p className="text-sm text-gray-500 mt-1 line-clamp-1">
-                  {item.content}
-                </p>
+                <div className="text-sm text-gray-500 mt-1 line-clamp-1 whitespace-pre-line [&_a]:text-blue-600 [&_a]:underline"
+                  dangerouslySetInnerHTML={{
+                    __html: item.content.replace(/<a /g, '<a target="_blank" ')
+                  }}
+                ></div>
               </div>
             </Link>
           ))}
@@ -179,9 +186,12 @@ function NewsDetail() {
                   className="w-full h-32 object-cover rounded"
                 />
                 <h3 className="font-semibold text-md text-[#FFAF61] mt-2">{item.title}</h3>
-                <p className="text-sm text-gray-500 mt-1 line-clamp-1">
-                  {item.content}
-                </p>
+                {item?.content && (
+                  <p
+                    className="text-sm text-gray-500 mt-1 line-clamp-1"
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                  />
+                )}
               </Link>
             </div>
           ))}

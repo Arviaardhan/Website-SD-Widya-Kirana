@@ -10,10 +10,12 @@ import Kurikulum from './pages/Kurikulum'
 import Prestasi from './pages/Prestasi'
 import Blog from './pages/Blog'
 import NewsDetail from './pages/NewsDetail'
+import ScrollToTop from './common/ScrollToTop'
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/visi-misi" element={<VisiMisi />} />

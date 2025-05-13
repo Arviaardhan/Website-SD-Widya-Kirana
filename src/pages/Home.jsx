@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchBeritaTerbaru, fetchGaleri } from '../controllers/HomeController';
 import { imageHome, kepalaSekolah } from '../assets/images';
+import { MdKeyboardArrowRight } from "react-icons/md";
 import "@fontsource/montserrat/700.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -48,63 +49,80 @@ function Home() {
 
             <Navbar />
             {/* Hero Section */}
-            <div className="relative w-full h-[400px]" data-aos="fade-in">
+            {/* Redesigned Hero Section */}
+            <div className="relative w-full h-[500px] md:h-[600px] bg-black">
                 <img
                     src={imageHome}
-                    alt="Background"
-                    className="w-full h-full object-cover"
+                    alt="Hero Background"
+                    className="absolute inset-0 w-full h-full object-cover object-center z-0"
                 />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-                    <h1 className="text-4xl md:text-6xl text-[#ffff00] mb-2 md:mb-5 drop-shadow-lg">
-                        BE BRIGHT GENERATION
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/70 z-10" />
+
+                <div className="relative z-20 flex flex-col items-center justify-center text-center h-full px-6">
+                    <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg tracking-wider">
+                        <span className="text-yellow-400">BE BRIGHT GENERATION</span>
                     </h1>
-                    <p className="text-2xl md:text-2xl mx-5 italic drop-shadow mb-12 md:mb-15 font-bold tracking-wide">
+
+                    <p className="mt-4 text-xl md:text-2xl italic text-gray-200 font-medium tracking-wide">
                         (Brilliant, Religious, Independent, Great, Hope, Talented)
                     </p>
-                    <p className="text-md md:text-xl mx-5 italic drop-shadow font-normal tracking-wide">
+
+                    <div className="mt-6 border-t border-white/20 w-3/4 md:w-1/2" />
+
+                    <p className="mt-4 text-sm md:text-lg text-gray-300 max-w-xl leading-relaxed">
                         Jl. Pemuda No.60, Magersari, Panjunan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59317
                     </p>
                 </div>
             </div>
 
+
             {/* Section Sambutan */}
-            <section className="py-12 px-4 md:px-10" data-aos="fade-up">
-                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                    <div className="w-full md:w-1/2 h-[300px] md:h-[470px] overflow-hidden rounded-lg shadow-lg">
+            <section className="py-16 px-4 md:px-10 bg-white" data-aos="fade-up">
+                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+
+                    {/* Gambar Kepala Sekolah */}
+                    <div className="w-full md:w-1/2 h-[320px] md:h-[480px] overflow-hidden rounded-2xl shadow-xl">
                         <img
-                            loading='lazy'
+                            loading="lazy"
                             src={kepalaSekolah}
                             alt="Kepala Sekolah"
-                            className="w-full h-full object-cover object-[center_30%] scale-110 md:scale-160 lg:scale-110 rounded-lg shadow-lg"
+                            className="w-full h-full object-cover object-[center_30%] scale-105 transition-transform duration-500 hover:scale-110"
                         />
                     </div>
-                    <div className="w-full md:w-1/2">
-                        <h2 className="text-3xl md:text-5xl md:leading-[1.2] font-bold text-[#26166e] mb-4">
+
+                    {/* Konten Sambutan */}
+                    <div className="w-full md:w-1/2 text-center md:text-left">
+                        <h2 className="text-3xl md:text-5xl font-extrabold text-[#26166e] mb-6 leading-snug">
                             Sambutan Kepala Sekolah
                         </h2>
-                        <p className="text-gray-700 text-lg mb-4 text">
+                        <p className="text-gray-700 text-lg mb-4 leading-relaxed">
                             Kami berkomitmen untuk memberikan pendidikan terbaik bagi anak-anak dengan lingkungan yang nyaman dan inspiratif. Kami berharap setiap langkah yang diambil di sekolah ini menjadi pijakan menuju masa depan yang cerah.
                         </p>
-                        <p className="text-gray-700 text-lg mb-4">
-                            Terima kasih atas dukungan dan kepercayaan yang diberikan, god bless you.
+                        <p className="text-gray-700 text-lg mb-4 leading-relaxed">
+                            Terima kasih atas dukungan dan kepercayaan yang diberikan, God bless you.
                         </p>
-                        <p className="text-gray-700 text-lg mb-1">Salam, Kepala Sekolah SD Widya Kirana</p>
-                        <p className="text-gray-700 text-lg font-semibold">Kepala Sekolah : Priskilla S.E. S.Pd</p>
+                        <p className="text-gray-800 text-lg mb-1">
+                            Salam, Kepala Sekolah SD Widya Kirana
+                        </p>
+                        <p className="text-[#26166e] text-lg font-semibold">
+                            Priskilla S.E. S.Pd
+                        </p>
                     </div>
+
                 </div>
             </section>
 
             {/* Section Berita */}
             <section className="py-14 px-4 md:px-20 bg-white justify-center items-center" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto text-center mb-12">
-                    <h2 className="text-3xl md:text-5xl lg:text-[1.rem] font-bold text-[#26166e] tracking-[1px]">BERITA TERBARU</h2>
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-[#26166e] leading-snug antialiased">BERITA TERBARU</h2>
                     <p className="mt-2 text-sm md:text-xl lg:text-[1.rem] text-gray-600 font-normal tracking-wide">
                         Simak informasi dan kegiatan terbaru dari SD Widya Kirana
                     </p>
                 </div>
 
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {beritaTerbaru.length === 0 ? (
                         Array(4).fill().map((_, i) => (
                             <div key={i} className="text-center">
@@ -115,15 +133,48 @@ function Home() {
                         ))
                     ) : (
                         beritaTerbaru.map((berita, index) => (
-                            <Link to={`/news/${berita.id}`} key={index} className="text-center">
+                            <Link
+                                to={`/news/${berita.id}`}
+                                key={index}
+                                className="flex flex-col bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-all duration-300 border border-gray-100"
+                                data-aos="fade-up"
+                            >
+                                {/* Gambar Berita */}
                                 <img
                                     loading="lazy"
-                                    src={`${berita.image}`}
+                                    src={berita.image}
                                     alt={berita.title}
-                                    className="rounded-md shadow-md mb-4 w-full h-72 object-cover object-center"
+                                    className="w-full h-full object-cover rounded-xl shadow-sm"
                                 />
-                                <h3 className="font-bold text-lg text-[#FFAF61] mb-2">{berita.title}</h3>
-                                <p className="text-gray-700 text-sm leading-6.5 md:leading-[1.55] line-clamp-3 font-normal tracking-wide mx-5">{berita.content}</p>
+
+                                {/* Konten Berita */}
+                                <div className="flex-1 mt-4">
+                                    <h3 className="text-2xl font-bold text-indigo-900 mb-4">{berita.title}</h3>
+
+                                    {berita?.content && (
+                                        <p
+                                            className="text-gray-700 text-sm text-justify tracking-wide leading-relaxed line-clamp-2 mb-8"
+                                            dangerouslySetInnerHTML={{ __html: berita.content }}
+                                        />
+                                    )}
+
+                                    {berita?.created_at && (
+                                        <div className="flex justify-between items-center">
+                                            <div className="bg-yellow-500 px-3 py-1 rounded-2xl text-white text-md font-medium">
+                                                {new Date(berita.created_at).toLocaleDateString('id-ID', {
+                                                    day: 'numeric',
+                                                    month: 'long',
+                                                    year: 'numeric',
+                                                })}
+                                            </div>
+
+                                            <div className="bg-indigo-900 text-white p-2 rounded-full cursor-pointer">
+                                                <MdKeyboardArrowRight />
+                                            </div>
+                                        </div>
+                                    )}
+
+                                </div>
                             </Link>
                         ))
                     )}
@@ -133,7 +184,7 @@ function Home() {
             {/* Section Gallery */}
             <section className="py-10 px-10 md:px-40" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto text-center mb-10">
-                    <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-[#26166e]">Galeri SD Widya Kirana</h2>
+                    <h2 className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-[#26166e] leading-snug">Galeri SD Widya Kirana</h2>
                     <p className="mt-2 md:mt-4 lg:mt-5 text-sm md:text-xl lg:text-[1.rem] text-gray-600 font-normal tracking-wide">
                         Dokumentasi kegiatan dan momen istimewa di SD Widya Kirana
                     </p>
@@ -193,7 +244,7 @@ function Home() {
             {/* Section Lokasi */}
             <section className="py-12 px-4 md:px-20" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto text-center mb-8">
-                    <h2 className="text-3xl md:text-5xl font-bold text-[#26166e] mb-4">Lokasi SD Widya Kirana</h2>
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-[#26166e] leading-snug mb-4">Lokasi SD Widya Kirana</h2>
                     <p className="text-gray-700 text-lg mb-6">
                         Kunjungi kami di alamat berikut atau lihat lokasi melalui Google Maps:
                     </p>

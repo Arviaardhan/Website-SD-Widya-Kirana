@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AxiosInstance } from "../common/AxiosInstance";
 import Navbar from "../components/Navbar";
 import { imageHome } from '../assets/images';
+import { MdKeyboardArrowRight } from "react-icons/md";
 import Footer from "../components/Footer";
 import { getAllNews } from "../utils/Config";
 import AOS from 'aos';
@@ -18,7 +19,6 @@ function Blog() {
     const itemsPerPage = 6;
     const [currentPage, setCurrentPage] = useState(1);
 
-    // Fungsi navigasi halaman
     const goToPage = (pageNumber) => {
         if (pageNumber >= 1 && pageNumber <= totalPages) {
             setCurrentPage(pageNumber);
@@ -151,14 +151,16 @@ function Blog() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {paginatedNews.map((news, index) => (
+                        {paginatedNews.slice().reverse().map((news, index) => (
                             <Link
                                 to={`/news/${news.id}`}
                                 key={index}
-                                className="bg-white rounded-xl transition overflow-hidden"
+                                className="flex flex-col bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-all duration-300 border border-gray-100"
                                 data-aos="fade-up"
                             >
+                                {/* Gambar Berita */}
                                 <img
+                                    loading="lazy"
                                     src={
                                         news.image
                                             ? news.image
@@ -170,35 +172,39 @@ function Blog() {
                                         e.target.src =
                                             "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
                                     }}
-                                    className="w-full max-h-max object-cover rounded-md"
+                                    className="w-full h-full object-cover rounded-xl shadow-sm"
                                 />
-                                <div className="p-4">
-                                    <h3 className="text-2xl font-bold mb-5 mt-5 text-[#FFAF61]">
-                                        {news.title}
-                                    </h3>
-                                    <p className="text-gray-600 text-md mb-5 mt-5 line-clamp-2">
-                                        {news.content}
-                                    </p>
-                                    <div className="text-md text-gray-500 flex items-center justify-between">
-                                        <span>By {news.admin?.username || "Admin"}</span>
-                                        <div className="flex items-center gap-2">
-                                            <img
-                                                src="https://cdn-icons-png.flaticon.com/128/591/591576.png"
-                                                alt="calendar"
-                                                className="w-4 h-4"
-                                            />
-                                            <span>
+
+                                {/* Konten Berita */}
+                                <div className="flex-1 mt-4">
+                                    <h3 className="text-2xl font-bold text-indigo-900 mb-4">{news.title}</h3>
+
+                                    {news?.content && (
+                                        <p
+                                            className="text-gray-700 text-sm text-justify tracking-wide leading-relaxed line-clamp-2 mb-8"
+                                            dangerouslySetInnerHTML={{ __html: news.content }}
+                                        />
+                                    )}
+
+                                    {news?.created_at && (
+                                        <div className="flex justify-between items-center">
+                                            <div className="bg-yellow-500 px-3 py-1 rounded-2xl text-white text-md font-medium">
                                                 {new Date(news.created_at).toLocaleDateString("id-ID", {
-                                                    year: "numeric",
-                                                    month: "long",
                                                     day: "numeric",
+                                                    month: "long",
+                                                    year: "numeric",
                                                 })}
-                                            </span>
+                                            </div>
+
+                                            <div className="bg-indigo-900 text-white p-2 rounded-full cursor-pointer">
+                                                <MdKeyboardArrowRight />
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
                             </Link>
                         ))}
+
 
                         {filteredNews.length === 0 && (
                             <p className="text-center col-span-full text-gray-500">Tidak ada berita yang sesuai.</p>
